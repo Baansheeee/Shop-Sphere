@@ -7,14 +7,17 @@ import { AuthProvider } from './context/auth.jsx'
 import { SearchProvider } from './context/Search.jsx'
 import "antd/dist/reset.css"
 import { CartProvider } from './context/CartContext.jsx'
+import { FavouriteProvider } from './context/FavouriteContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <SearchProvider>
       <CartProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <FavouriteProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </FavouriteProvider>
       </CartProvider>
     </SearchProvider>
   </AuthProvider>,

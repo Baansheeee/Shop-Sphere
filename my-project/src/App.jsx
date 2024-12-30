@@ -29,7 +29,8 @@ import Categories from './pages/Categories'
 import CategoryProducts from './pages/CategoryProducts'
 import UserDetails from './pages/admin/UserDetails'
 import Checkout from './pages/Checkout'
-import OrdersAdmin from './pages/admin/OrdersAdmin'
+import OrdersAdmin from './pages/admin/OrderDetailsModal'
+import Likes from './pages/Likes'
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           {/* <Route path="/category/:slug" element={<CategoryPage />} /> */}
           <Route path="cart" element={<Cart />} />
           <Route path="checkout" element={<Checkout />} />
+          <Route path="likes" element={<Likes />} />
         </Route>
        
         <Route path="/admindashboard" element={<AdminDashboard />} />

@@ -5,11 +5,11 @@ import Layout from '../../components/Layout/Layout';
 import Alert from '../../components/Layout/Alert';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom'
-import {Toaster, toast} from "react-hot-toast"
+import { Toaster, toast } from "react-hot-toast"
 import { useAuth } from '../../context/auth';
 
 const Profile = () => {
-  const [auth,setAuth] = useAuth()
+  const [auth, setAuth] = useAuth()
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -19,43 +19,43 @@ const Profile = () => {
   const [success, setSuccess] = useState(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); 
+    setError(null);
     setSuccess(null);
     try {
-        const {data} = await axios.put('http://localhost:3000/api/v1/auth/profile', { name, email, password, phone, address});
-        if(data?.error){
-          toast.error(data.error)
-        }
-        else{
-          setAuth({...auth, user: data?.updatedUser})
-          let LS = localStorage.getItem('auth')
-          LS = JSON.parse(LS)
-          LS.user = data.updatedUser
-          localStorage.setItem('auth', JSON.stringify(LS))
-          toast.success("Profile updated successfully")
-        }
+      const { data } = await axios.put('http://localhost:3000/api/v1/auth/profile', { name, email, password, phone, address });
+      if (data?.error) {
+        toast.error(data.error)
+      }
+      else {
+        setAuth({ ...auth, user: data?.updatedUser })
+        let LS = localStorage.getItem('auth')
+        LS = JSON.parse(LS)
+        LS.user = data.updatedUser
+        localStorage.setItem('auth', JSON.stringify(LS))
+        toast.success("Profile updated successfully")
+      }
     } catch (error) {
-        if (error.response) {
-            setError(error.response.data.message);
-        } else if (error.request) {
-            setError("No response from server. Please try again later.");
-        } else {
-            setError("An error occurred. Please try again.");
-        }
+      if (error.response) {
+        setError(error.response.data.message);
+      } else if (error.request) {
+        setError("No response from server. Please try again later.");
+      } else {
+        setError("An error occurred. Please try again.");
+      }
     }
-} 
-  useEffect(()=>{
-    const {name,email,password,phone,address} = auth.user
+  }
+  useEffect(() => {
+    const { name, email, password, phone, address } = auth.user
     setName(name)
     setPhone(phone)
     setEmail(email)
     setAddress(address)
   }, [auth?.user])
   return (
-    <Layout>
-      <div className='w-full relative'>
-        <Toaster position='top-center'/>
-        <div className='w-1/2 py-2 pl-3 pr-3 bg-gray-100 absolute left-[23%]'>   
+    <Layout title={"Shop Sphere - Update Profile"}>
+      <div className='flex justify-center items-center min-h-screen  bg-gray-200'>
+        <Toaster position='top-center' />
+        <div className='w-1/2 max-w-screen-lg py-2 px-3 bg-gray-100 rounded-2xl shadow-xl'>
           <h1 className='text-2xl font-bold text-center'>User Profile</h1>
           {error && <Alert type="error" message={error} onClose={() => setError(null)} />}
           {success && <Alert type="success" message={success} onClose={() => setSuccess(null)} />}
@@ -74,9 +74,7 @@ const Profile = () => {
                   className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 py-2 rounded-md"
                   placeholder="Enter your name" />
               </div>
-
             </div>
-
             <div>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -91,12 +89,9 @@ const Profile = () => {
                   autoComplete="email"
                   className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 py-2 rounded-md"
                   placeholder="Enter your Email Address"
-
                 />
               </div>
-
             </div>
-
             <div>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -111,12 +106,9 @@ const Profile = () => {
                   autoComplete="new-password"
                   className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 py-2  rounded-md"
                   placeholder="Enter password"
-
                 />
               </div>
-
             </div>
-
             <div>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -131,12 +123,9 @@ const Profile = () => {
                   autoComplete="tel"
                   className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 py-2 rounded-md"
                   placeholder="Enter your Phone Number"
-
                 />
               </div>
-
             </div>
-
             <div>
               <div className="mt-1 relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -150,14 +139,9 @@ const Profile = () => {
                   onChange={(e) => setAddress(e.target.value)}
                   className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 py-2 rounded-md"
                   placeholder="Enter your Address"
-
                 />
               </div>
-
-
-
             </div>
-
             <div>
               <button
                 type="submit"
@@ -165,7 +149,6 @@ const Profile = () => {
               >
                 Update
               </button>
-
             </div>
           </form>
         </div>

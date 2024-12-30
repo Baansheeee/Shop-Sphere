@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Button, Modal, Input, Spin } from 'antd';
 import { toast } from 'react-toastify';
+import AdminMenu from '../../components/Layout/AdminMenu';
+import AdminLayout from '../../components/Layout/AdminLayout';
 
 const OrdersAdmin = () => {
     const [orders, setOrders] = useState([]);
@@ -108,67 +110,68 @@ const OrdersAdmin = () => {
     ];
 
     return (
-        <div className="p-4">
-            <h2 className="text-xl font-bold mb-4">Admin Orders</h2>
-            <Input.Search
-                placeholder="Search by buyer name or status"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="mb-4"
-            />
-            {loading ? (
-                <div className="flex justify-center items-center">
-                    <Spin />
-                </div>
-            ) : (
-                <Table
-                    dataSource={filteredOrders}
-                    columns={columns}
-                    rowKey="_id"
-                    pagination={{ pageSize: 5 }}
+        <AdminLayout>
+            <div className="p-4">
+                <h2 className="text-xl font-bold mb-4">Admin Orders</h2>
+                <Input.Search
+                    placeholder="Search by buyer name or status"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="mb-4"
                 />
-            )}
-            <Modal
-                title="Order Details"
-                open={isModalOpen}
-                onCancel={handleModalClose}
-                footer={null}
-            >
-                {selectedOrder && (
-                    <div>
-                        <p>
-                            <strong>Order ID:</strong> {selectedOrder._id}
-                        </p>
-                        <p>
-                            <strong>Buyer:</strong> {selectedOrder.buyerDetails || 'Loading...'}
-                        </p>
-                        <p>
-                            <strong>Total Amount:</strong> ${selectedOrder.totalAmount}
-                        </p>
-                        <p>
-                            <strong>Status:</strong> {selectedOrder.status}
-                        </p>
-                        <p>
-                            <strong>Shipping Address:</strong> {selectedOrder.shippingAddress}
-                        </p>
-                        <p>
-                            <strong>Payment Method:</strong> {selectedOrder.payment.method}
-                        </p>
-                        <p>
-                            <strong>Products:</strong>
-                        </p>
-                        <ul>
-                            {selectedOrder.products.map((product, index) => (
-                                <li key={index}>
-                                    {product.name} - Quantity: {product.quantity}
-                                </li>
-                            ))}
-                        </ul>
+                {loading ? (
+                    <div className="flex justify-center items-center">
+                        <Spin />
                     </div>
+                ) : (
+                    <Table
+                        dataSource={filteredOrders}
+                        columns={columns}
+                        rowKey="_id"
+                        pagination={{ pageSize: 5 }}
+                    />
                 )}
-            </Modal>
-        </div>
+                <Modal
+                    title="Order Details"
+                    open={isModalOpen}
+                    onCancel={handleModalClose}
+                    footer={null}
+                >
+                    {selectedOrder && (
+                        <div>
+                            <p>
+                                <strong>Order ID:</strong> {selectedOrder._id}
+                            </p>
+                            <p>
+                                <strong>Buyer:</strong> {selectedOrder.buyerDetails || 'Loading...'}
+                            </p>
+                            <p>
+                                <strong>Total Amount:</strong> ${selectedOrder.totalAmount}
+                            </p>
+                            <p>
+                                <strong>Status:</strong> {selectedOrder.status}
+                            </p>
+                            <p>
+                                <strong>Shipping Address:</strong> {selectedOrder.shippingAddress}
+                            </p>
+                            <p>
+                                <strong>Payment Method:</strong> {selectedOrder.payment.method}
+                            </p>
+                            <p>
+                                <strong>Products:</strong>
+                            </p>
+                            <ul>
+                                {selectedOrder.products.map((product, index) => (
+                                    <li key={index}>
+                                        {product.name} - Quantity: {"1"}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </Modal>
+            </div>
+        </AdminLayout>
     );
 };
-
 export default OrdersAdmin;

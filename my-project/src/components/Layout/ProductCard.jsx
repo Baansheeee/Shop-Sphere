@@ -3,11 +3,13 @@
 import React from 'react';
 import { Heart, Store, ShoppingCart } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCart } from '../../context/CartContext';
 import { Toaster, toast } from 'react-hot-toast';
+import { useCart } from '../../context/CartContext';
+import { useLike } from '../../context/FavouriteContext';
 
 const ProductCard = ({ product }) => {
   const [cart, setCart] = useCart();
+  const [like, setLike] = useLike();
   const navigate = useNavigate();
 
   const handleCardClick = (e) => {
@@ -28,7 +30,10 @@ const ProductCard = ({ product }) => {
           alt={product.name}
           className="w-full h-64 object-cover rounded-t-lg"
         />
-        <button className="absolute top-4 right-4 p-2 bg-white rounded-full hover:bg-gray-100">
+        <button onClick={()=>{setLike([...like,product])
+          localStorage.setItem('likes', JSON.stringify([...like,product])); 
+          toast.success("Product added to favourites")
+        }} className="absolute top-4 right-4 p-2 bg-white rounded-full hover:bg-gray-100">
           <Heart className="h-5 w-5 text-gray-600" />
         </button>
       </div>
@@ -57,6 +62,7 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
     </div>
+    
   );
 };
 
