@@ -44,7 +44,7 @@ createProduct = async (req, res) => {
         if(photo){
             products.photo.data = fs.readFileSync(photo.path)
             products.photo.contentType = photo.type
-        }
+        } 
         await products.save();
         res.status(201).send({
             success: true,
@@ -264,7 +264,7 @@ getSearch = async (req,res)=>{
             error
         })
     }
-}
+}   
 
 getSimilar = async (req,res)=>{
     try {

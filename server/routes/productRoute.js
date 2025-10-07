@@ -1,7 +1,6 @@
 const express = require('express')
 const formidable = require('express-formidable')
 
-
 const router = express.Router();
 
 const { createProduct, getProducts, getSingleProduct, getPhotos, updateProduct, deleteProduct, filterProduct, getProductCount, getProductList, getSearch, getSimilar, getCategoryProducts } = require('../controllers/productHandlers');

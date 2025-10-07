@@ -33,8 +33,8 @@ const ProductCard = ({ product }) => {
         <button onClick={()=>{setLike([...like,product])
           localStorage.setItem('likes', JSON.stringify([...like,product])); 
           toast.success("Product added to favourites")
-        }} className="absolute top-4 right-4 p-2 bg-white rounded-full hover:bg-gray-100">
-          <Heart className="h-5 w-5 text-gray-600" />
+        }} className="absolute top-4 right-4 p-2 bg-white rounded-full ">
+          <Heart className="h-5 w-5 text-gray-600 hover:text-red-700" />
         </button>
       </div>
       <div className="p-4">

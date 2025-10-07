@@ -36,12 +36,9 @@ const AddCategory = () => {
   };
 
 
-  const handleCategorySubmit = async (formData) => {
+  const   handleCategorySubmit = async (formData) => {
     try {
-      // for (let pair of formData.entries()) {
-      //   console.log(pair[0] + ': ' + pair[1]);
-      // }
-  
+      
       const { data } = await axios.post(
         'http://localhost:3000/api/v1/category/create-category',
         formData,
@@ -164,6 +161,9 @@ const AddCategory = () => {
                     Category Name
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Description
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Photo
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -197,6 +197,9 @@ const AddCategory = () => {
                         <div className="text-sm font-medium text-gray-900">
                           {category.name}
                         </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {category.description}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <img

@@ -4,7 +4,7 @@ const slugify = require('slugify');
 
 const categoryHandler = async (req, res) => {
     try {
-        const { name } = req.fields;
+        const { name,description } = req.fields;
         const { photo } = req.files;
         switch (true) {
             case !name:
@@ -16,6 +16,11 @@ const categoryHandler = async (req, res) => {
                 return res.status(400).send({
                     success: false,
                     message: 'Photo size should not exceed 1MB'
+                });
+            case !description:
+                return res.status(400).send({
+                    success: false,
+                    message: 'Description is required'
                 });
         }
 
@@ -53,7 +58,9 @@ const updateCategoryHandler = async (req, res) => {
     try {
         const { name } = req.fields;
         const { photo } = req.files;
+        const { description } = req.fields;
         const { id } = req.params;
+
 
         switch (true) {
             case !name:
@@ -65,6 +72,11 @@ const updateCategoryHandler = async (req, res) => {
                 return res.status(400).send({
                     success: false,
                     message: 'Photo size should not exceed 1MB'
+                });
+            case !description:
+                return res.status(400).send({
+                    success: false,
+                    message: 'Description is required'
                 });
         }
 

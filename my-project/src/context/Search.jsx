@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState,useContext,createContext } from "react";
-
+ 
 
 const SearchContext = createContext();
 const SearchProvider = ({children}) =>{

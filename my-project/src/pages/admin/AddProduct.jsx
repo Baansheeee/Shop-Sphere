@@ -75,7 +75,7 @@ const AddProduct = () => {
       toast.error(error.response?.data?.message || 'An error occurred while creating the product.');
     }
   };
-
+ 
   const handleProductUpdate = async (productData) => {
     try {
       const { data } = await axios.put(

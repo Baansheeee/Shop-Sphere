@@ -10,7 +10,7 @@ registerHandler = async (req,res) =>{
                 success: false,
                 message: 'Name is required'
             })
-        }
+        } 
         if(!email){
             return res.status(400).send({
                 success: false,
@@ -119,7 +119,7 @@ loginHandler = async (req, res) => {
             error
         })
     }
-};
+}; 
 
 adminLoginHandler = async (req, res) => {
     try {

@@ -7,7 +7,7 @@ import ProductCard from '../components/Layout/ProductCard';
 import { Checkbox, Spin } from 'antd';
 import Prices from '../components/Prices';
 import SearchInput from '../components/Form/SearchInput';
-
+ 
 const Products = () => {
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
@@ -19,7 +19,7 @@ const Products = () => {
     // eslint-disable-next-line no-unused-vars
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
-
+ 
     const getTotal = async () => {
         try {
             const { data } = await axios.get("http://localhost:3000/api/v1/product/product-count")

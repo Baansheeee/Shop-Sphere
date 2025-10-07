@@ -51,9 +51,7 @@ const Navbar = () => {
                                             {auth?.user?.name}
                                         </Link>
                                         <ul className="dropdown-menu">
-                                            <li>
-                                                <Link className="dropdown-item px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-500" to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}>Dashboard</Link>
-                                            </li>
+                                            
                                             <li>
                                                 <Link className="dropdown-item px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-500" to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "profile"}`}>Profile</Link>
                                             </li>

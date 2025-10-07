@@ -19,7 +19,7 @@ const Register = () => {
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(null); 
+        setError(null);  
         setSuccess(null);
         try {
             const res = await axios.post('http://localhost:3000/api/v1/auth/register', { name, email, password, phone, address, answer });

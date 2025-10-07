@@ -7,7 +7,7 @@ import { ArrowLeft, Heart, Store, ShoppingCart } from 'lucide-react';
 import { toast, Toaster } from 'react-hot-toast';
 import ProductCard from '../components/Layout/ProductCard';
 import { useCart } from '../context/CartContext';
-
+ 
 const ProductDesc = () => {
     const [product, setProduct] = useState(null);
     const [cart, setCart] = useCart()
