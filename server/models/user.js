@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/ecommerce')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://ecommerce:ecommerce123@ecommerce.85s1apq.mongodb.net/?retryWrites=true&w=majority&appName=ecommerce', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
 const userModel = mongoose.Schema({
     name: {
