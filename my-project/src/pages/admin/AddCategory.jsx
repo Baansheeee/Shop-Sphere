@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import { Pencil, Trash2, Plus, Search, X } from 'lucide-react';
@@ -18,7 +19,7 @@ const AddCategory = () => {
     try {
       setLoading(true);
       console.log('Fetching categories...');
-      const { data } = await axios.get('http://localhost:3000/api/v1/category/get-category');
+  const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/category/get-category`);
       console.log('API response:', data);
       if (data?.success) {
         setCategories(data?.categories);
@@ -40,7 +41,7 @@ const AddCategory = () => {
     try {
       
       const { data } = await axios.post(
-        'http://localhost:3000/api/v1/category/create-category',
+        `${import.meta.env.VITE_API}/api/v1/category/create-category`,
         formData,
         {
           headers: {
@@ -65,7 +66,7 @@ const AddCategory = () => {
   const handleEdit = async (formData) => {
     try {
       const { data } = await axios.put(
-        `http://localhost:3000/api/v1/category/update-category/${selectedCategory._id}`,
+  `${import.meta.env.VITE_API}/api/v1/category/update-category/${selectedCategory._id}`,
         formData,
         {
           headers: {
@@ -89,7 +90,7 @@ const AddCategory = () => {
 
   const handleDelete = async (id) => {
     try {
-      const { data } = await axios.delete(`http://localhost:3000/api/v1/category/delete-category/${id}`);
+  const { data } = await axios.delete(`${import.meta.env.VITE_API}/api/v1/category/delete-category/${id}`);
       if (data?.success) {
         toast.success('Category deleted successfully!');
         getAllCategories();
@@ -203,7 +204,7 @@ const AddCategory = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <img
-                          src={`http://localhost:3000/api/v1/category/category-photo/${category._id}`}
+                          src={`${import.meta.env.VITE_API}/api/v1/category/category-photo/${category._id}`}
                           alt={category.name}
                           className="h-10 w-10 rounded-full"
                         />

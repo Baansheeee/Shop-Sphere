@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '../../components/Layout/AdminLayout';
@@ -15,7 +16,7 @@ const Users = () => {
   const getAllUsers = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get('http://localhost:3000/api/v1/auth/total-users');
+  const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/auth/total-users`);
       console.log(data);
       if (data?.success) {
         setUsers(data?.total);

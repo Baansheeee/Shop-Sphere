@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useState } from 'react'
 import Layout from '../components/Layout/Layout'
 import { useCart } from '../context/CartContext'
@@ -34,7 +35,7 @@ const Checkout = () => {
             }
 
             const { data } = await axios.post(
-                'http://localhost:3000/api/v1/order/create-order',
+                `${import.meta.env.VITE_API}/api/v1/order/create-order`,
                 orderData
             )
 

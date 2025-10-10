@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Mail, Lock, ShoppingBag } from 'lucide-react';
@@ -19,7 +20,7 @@ const Login = () => {
         setError(null);
         setSuccess(null);
         try {
-            const res = await axios.post('http://localhost:3000/api/v1/auth/login', { email, password });
+            const res = await axios.post(`${import.meta.env.VITE_API}/api/v1/auth/login`, { email, password });
             if (res.data.success) {
                 setSuccess("Login successful! Redirecting to homepage...");
                 setTimeout(() => navigate('/'), 2000);

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+/* global process */
 import React, { useState, useEffect } from 'react';
 import { Select, Input } from 'antd';
 
@@ -66,7 +67,7 @@ const ProductForm = ({ handleSubmit, categories, initialValues = {} }) => {
                             <div>
                                 <img 
                                 alt=""
-                                src={`http://localhost:3000/api/v1/product/product-photo/${initialValues._id}`}
+                                src={`${import.meta.env.VITE_API}/api/v1/product/product-photo/${initialValues._id}`}
                                 width="100"
                                 height="100"
                                 />

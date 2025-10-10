@@ -1,12 +1,12 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const path = require('path');
 const cors = require('cors');
+const mongoose = require('mongoose');
+
 const authRoutes = require('./routes/authRoute');
 const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoute');
 const orderRoute = require('./routes/orderRoute');
-const mongoose = require('mongoose');
 
 const app = express();
 
@@ -23,8 +23,7 @@ mongoose
   .catch((err) => console.error('❌ MongoDB connection error:', err));
 
 // Middlewares
-app.use(express.static(path.join(__dirname, 'public'))); // ❌ remove extra space in ' public'
-app.use(cors());
+app.use(cors()); // Allow requests from all origins
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

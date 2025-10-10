@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useState } from 'react';
 import { User, Mail, Lock, Phone, MapPin, ShoppingBag,  FileQuestion } from 'lucide-react';
 import Layout from '../../components/Layout/Layout';
@@ -22,7 +23,7 @@ const Register = () => {
         setError(null);  
         setSuccess(null);
         try {
-            const res = await axios.post('http://localhost:3000/api/v1/auth/register', { name, email, password, phone, address, answer });
+            const res = await axios.post(`${import.meta.env.VITE_API}/api/v1/auth/register`, { name, email, password, phone, address, answer });
             if (res.data.success) {
                 setSuccess("Registration successful! Redirecting to homepage...");
                 setTimeout(() => navigate('/'), 3000);

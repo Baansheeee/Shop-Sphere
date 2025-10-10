@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useState, useEffect } from 'react';
 
 const CategoryForm = ({ handleSubmit, initialValues = {} }) => {
@@ -57,7 +58,7 @@ const CategoryForm = ({ handleSubmit, initialValues = {} }) => {
                             ) : initialValues._id ? (
                                 <div>
                                     <img
-                                        src={`http://localhost:3000/api/v1/category/category-photo/${initialValues._id}`}
+                                        src={`${import.meta.env.VITE_API}/api/v1/category/category-photo/${initialValues._id}`}
                                         alt="Current category"
                                         width="100"
                                         height="100"

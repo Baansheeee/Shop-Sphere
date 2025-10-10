@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useState, useEffect } from 'react';
 import { User, Mail, Lock, Phone, MapPin, ShoppingBag, FileQuestion } from 'lucide-react';
 import Layout from '../../components/Layout/Layout';
@@ -22,7 +23,7 @@ const Profile = () => {
     setError(null);
     setSuccess(null);
     try {
-      const { data } = await axios.put('http://localhost:3000/api/v1/auth/profile', { name, email, password, phone, address });
+  const { data } = await axios.put(`${import.meta.env.VITE_API}/api/v1/auth/profile`, { name, email, password, phone, address });
       if (data?.error) {
         toast.error(data.error)
       }

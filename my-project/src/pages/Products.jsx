@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout/Layout';
 import axios from 'axios';
@@ -22,7 +23,7 @@ const Products = () => {
  
     const getTotal = async () => {
         try {
-            const { data } = await axios.get("http://localhost:3000/api/v1/product/product-count")
+            const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/product/product-count`)
             setTotal(data?.total)
         } catch (error) {
             console.log(error)
@@ -37,7 +38,7 @@ const Products = () => {
     const showMore = async () => {
         try {
             setLoading(true)
-            const { data } = await axios.get(`http://localhost:3000/api/v1/product/product-list/${page}`)
+            const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/product/product-list/${page}`)
             setLoading(false)
             setProducts([...products, ...data.products])
         } catch (error) {
@@ -47,7 +48,7 @@ const Products = () => {
 
     const getAllCategories = async () => {
         try {
-            const { data } = await axios.get('http://localhost:3000/api/v1/category/get-category');
+            const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/category/get-category`);
             if (data?.success) {
                 setCategories(data?.categories);
             }
@@ -61,7 +62,7 @@ const Products = () => {
     const getAllProducts = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get(`http://localhost:3000/api/v1/product/product-list/${page}`);
+            const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/product/product-list/${page}`);
             setLoading(false);
             if (data?.success) {
                 setProducts(data?.products);
@@ -83,7 +84,7 @@ const Products = () => {
 
     const filterProduct = async () => {
         try {
-            const { data } = await axios.post("http://localhost:3000/api/v1/product/product-filter", { checked })
+            const { data } = await axios.post(`${import.meta.env.VITE_API}/api/v1/product/product-filter`, { checked })
             setProducts(data?.products)
         } catch (error) {
             console.log(error)

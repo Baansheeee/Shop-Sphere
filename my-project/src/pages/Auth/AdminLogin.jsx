@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -18,7 +19,7 @@ const AdminLogin = () => {
         setError(null);
         setSuccess(null);
         try {
-            const res = await axios.post('http://localhost:3000/api/v1/auth/admin', { name, password });
+            const res = await axios.post(`${import.meta.env.VITE_API}/api/v1/auth/admin`, { name, password });
             if (res.data.success) {
                 setSuccess("Login successful! Redirecting to admin dashboard...");
                 localStorage.setItem('adminToken', res.data.token);

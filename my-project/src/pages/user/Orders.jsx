@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import Layout from '../../components/Layout/Layout'
@@ -18,7 +19,7 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/api/v1/order/get-user-orders', {
+      const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/order/get-user-orders`, {
         headers: {
           Authorization: auth?.token
         }

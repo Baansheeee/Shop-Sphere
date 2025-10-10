@@ -1,4 +1,6 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useState, useEffect } from 'react'
 import AdminMenu from '../../components/Layout/AdminMenu'
 import { Search, Eye, Edit, Package } from 'lucide-react'
@@ -17,7 +19,7 @@ const OrdersAdmin = () => {
 
   const getBuyerDetails = async (buyerId) => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/v1/auth/user/${buyerId}`)
+  const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/auth/user/${buyerId}`)
       console.log(data)
       if (data?.success) {
         setBuyers(prev => ({ ...prev, [buyerId]: data.user }))
@@ -30,7 +32,7 @@ const OrdersAdmin = () => {
   const getAllOrders = async () => {
     try {
       setLoading(true)
-      const { data } = await axios.get('http://localhost:3000/api/v1/order/get-all-orders')
+  const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/order/get-all-orders`)
       console.log(data)
       if (data?.success) {
         setOrders(data.orders)
@@ -66,7 +68,7 @@ const OrdersAdmin = () => {
 
   const handleUpdateOrder = async (orderId, updatedData) => {
     try {
-      const { data } = await axios.put(`http://localhost:3000/api/v1/order/update-order-status/${orderId}`, updatedData)
+  const { data } = await axios.put(`${import.meta.env.VITE_API}/api/v1/order/update-order-status/${orderId}`, updatedData)
       if (data?.success) {
         toast.success('Order updated successfully')
         setIsModalOpen(false)

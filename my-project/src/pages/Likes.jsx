@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useMemo } from 'react'
 import Layout from '../components/Layout/Layout'
 import { useLike } from '../context/FavouriteContext'
@@ -39,7 +40,7 @@ const Likes = () => {
             {favoriteItems.map((item) => (
               <div key={item._id} className="bg-white rounded-lg shadow-md overflow-hidden">
                 <img
-                  src={`http://localhost:3000/api/v1/product/product-photo/${item._id}`}
+                  src={`${import.meta.env.VITE_API}/api/v1/product/product-photo/${item._id}`}
                   alt={item.name}
                   className="w-full h-48 object-cover"
                 />

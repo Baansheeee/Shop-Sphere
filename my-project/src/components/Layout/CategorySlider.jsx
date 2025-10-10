@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -53,7 +54,7 @@ const CategorySlider = ({ categories = [] }) => {
                 <div className="flex flex-col items-center">
                   <div className="w-28 h-28 rounded-full flex items-center justify-center mb-4">
                     <img
-                      src={`http://localhost:3000/api/v1/category/category-photo/${category._id}`}
+                      src={`${import.meta.env.VITE_API}/api/v1/category/category-photo/${category._id}`}
                       alt={category.name}
                       className="w-28 h-28 object-contain"
                     />

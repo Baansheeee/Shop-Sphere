@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Mail, Lock, ShoppingBag, FileQuestion } from 'lucide-react';
@@ -17,7 +18,7 @@ const ForgotPassword = () => {
         setError(null);
         setSuccess(null);
         try {
-            const res = await axios.post('http://localhost:3000/api/v1/auth/forgot', { email, answer, newPassword });
+            const res = await axios.post(`${import.meta.env.VITE_API}/api/v1/auth/forgot`, { email, answer, newPassword });
             if (res.data.success) {
                 setSuccess("Password was successfully changed");
                 setTimeout(() => navigate('/login'), 3000); 

@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global process */
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/auth";
 import { Outlet } from "react-router-dom";
@@ -11,7 +12,7 @@ export default function PrivateRoute(){
 
     useEffect(() => {
         const authCheck = async() =>{
-            const res = await axios.get('http://localhost:3000/api/v1/auth/user-auth')
+            const res = await axios.get(`${import.meta.env.VITE_API}/api/v1/auth/user-auth`)
             if (res.data.ok){
                 setOk(true)
             }

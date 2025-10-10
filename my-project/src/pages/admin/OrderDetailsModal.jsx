@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -16,7 +17,7 @@ const OrdersAdmin = () => {
 
     const getBuyerDetails = async (buyerId) => {
         try {
-            const { data } = await axios.get(`http://localhost:3000/api/v1/auth/user/${buyerId}`);
+            const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/auth/user/${buyerId}`);
             if (data?.success) {
                 setBuyers((prevBuyers) => ({
                     ...prevBuyers,
@@ -31,7 +32,7 @@ const OrdersAdmin = () => {
     const getAllOrders = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.get('http://localhost:3000/api/v1/order/get-all-orders');
+            const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/order/get-all-orders`);
             if (data?.success) {
                 setOrders(data.orders);
             }

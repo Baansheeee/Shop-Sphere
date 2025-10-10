@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global process */
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/auth";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -13,7 +14,7 @@ export default function AdminRoute() {
     useEffect(() => {
         const authCheck = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/api/v1/auth/admin-auth', {
+                const res = await axios.get(`${import.meta.env.VITE_API}/api/v1/auth/admin-auth`, {
                     headers: {
                         Authorization: auth?.token, 
                     },

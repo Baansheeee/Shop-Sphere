@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useState } from 'react'
 import { Search } from 'lucide-react'
 import { useSearch} from '../../context/Search'
@@ -11,7 +12,7 @@ const SearchInput = () =>{
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const {data} = await axios.get(`http://localhost:3000/api/v1/product/search/${values.keyword}`)
+            const {data} = await axios.get(`${process.env.API}/api/v1/product/search/${values.keyword}`)
             console.log(data)
             console.log(values)
             setValues({...values, results: data})

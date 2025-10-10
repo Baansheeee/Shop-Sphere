@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+/* global process */
 import React from 'react';
 import { Heart, Store, ShoppingCart } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -26,7 +27,7 @@ const ProductCard = ({ product }) => {
       <Toaster position="top-center" />
       <div className="relative">
         <img
-          src={`http://localhost:3000/api/v1/product/product-photo/${product._id}`}
+          src={`${import.meta.env.VITE_API}/api/v1/product/product-photo/${product._id}`}
           alt={product.name}
           className="w-full h-64 object-cover rounded-t-lg"
         />

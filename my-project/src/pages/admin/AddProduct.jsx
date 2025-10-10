@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import AdminLayout from '../../components/Layout/AdminLayout';
@@ -20,7 +21,7 @@ const AddProduct = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get('http://localhost:3000/api/v1/product/get-product');
+      const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/product/get-product`);
       console.log(data);
       if (data?.success) {
         setProducts(data?.products);
@@ -35,7 +36,7 @@ const AddProduct = () => {
 
   const getAllCategories = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3000/api/v1/category/get-category');
+      const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/category/get-category`);
       console.log(data);
       if (data?.success) {
         setCategories(data?.categories);
@@ -54,7 +55,7 @@ const AddProduct = () => {
   const handleProductSubmit = async (productData) => {
     try {
       const { data } = await axios.post(
-        'http://localhost:3000/api/v1/product/create-product',
+        `${import.meta.env.VITE_API}/api/v1/product/create-product`,
         productData,
         {
           headers: {
@@ -79,7 +80,7 @@ const AddProduct = () => {
   const handleProductUpdate = async (productData) => {
     try {
       const { data } = await axios.put(
-        `http://localhost:3000/api/v1/product/update-product/${selectedProduct._id}`,
+        `${import.meta.env.VITE_API}/api/v1/product/update-product/${selectedProduct._id}`,
         productData,
         {
           headers: {
@@ -106,7 +107,7 @@ const AddProduct = () => {
     try {
       const confirmDelete = window.confirm('Are you sure you want to delete this product?');
       if (confirmDelete) {
-        const { data } = await axios.delete(`http://localhost:3000/api/v1/product/delete-product/${id}`);
+        const { data } = await axios.delete(`${import.meta.env.VITE_API}/api/v1/product/delete-product/${id}`);
         if (data.success) {
           setProducts((prevProducts) => prevProducts.filter((product) => product._id !== id));
           toast.success('Product deleted successfully!');
@@ -123,7 +124,7 @@ const AddProduct = () => {
 
   const handleView = async (product) => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/v1/product/get-product/${product.slug}`);
+      const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/product/get-product/${product.slug}`);
       if (data?.success) {
         navigate('/productpage', { state: { product: data.product } });
       } else {

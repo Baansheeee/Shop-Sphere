@@ -1,4 +1,6 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+/* global process */
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -21,7 +23,7 @@ const ProductDesc = () => {
         const fetchProduct = async () => {
             try {
                 setLoading(true);
-                const { data } = await axios.get(`http://localhost:3000/api/v1/product/get-product/${slug}`);
+                const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/product/get-product/${slug}`);
                 if (data?.success) {
                     setProduct(data.product);
                     getSimilarProducts(data?.product._id, data.product?.category._id);
@@ -41,7 +43,7 @@ const ProductDesc = () => {
 
     const getSimilarProducts = async (pid, cid) => {
         try {
-            const { data } = await axios.get(`http://localhost:3000/api/v1/product/related-products/${pid}/${cid}`);
+            const { data } = await axios.get(`${import.meta.env.VITE_API}/api/v1/product/related-products/${pid}/${cid}`);
             setRelatedProducts(data?.products);
         } catch (error) {
             console.log(error)
@@ -98,7 +100,7 @@ const ProductDesc = () => {
                         <div className="space-y-4">
                             <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 relative">
                                 <img
-                                    src={`http://localhost:3000/api/v1/product/product-photo/${product._id}`}
+                                    src={`${import.meta.env.VITE_API}/api/v1/product/product-photo/${product._id}`}
                                     alt={product.name}
                                     className="w-full h-full object-cover"
                                 />

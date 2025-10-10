@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -46,7 +47,7 @@ const ProductPage = () => {
               <div className="aspect-square rounded-lg overflow-hidden bg-gray-100">
                 {product.photo ? (
                   <img
-                    src={`http://localhost:3000/api/v1/product/product-photo/${product._id}`}
+                    src={`${import.meta.env.VITE_API}/api/v1/product/product-photo/${product._id}`}
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />
